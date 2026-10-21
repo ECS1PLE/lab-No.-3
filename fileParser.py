@@ -4,5 +4,5 @@ from addressRecord import addressRecord
 
 class FileParser(ABC):
     @abstractmethod
-    def parse(self, path: Path) -> list[addressRecord]:
+    def parse(self, path: Path) -> dict[addressRecord, int]:
         pass
