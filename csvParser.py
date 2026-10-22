@@ -7,7 +7,8 @@ class CsvParser(FileParser):
     def parse(self, path: Path) -> dict[addressRecord, int]:
         data = pd.read_csv(
             path,
-            sep=";",
+            sep=None,
+            engine="python",
             dtype={
                 "city": str,
                 "street": str,
