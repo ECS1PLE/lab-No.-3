@@ -1,4 +1,3 @@
-from pathlib import Path
 import xml.etree.ElementTree as ET
 
 from path import PathUser
@@ -25,8 +24,8 @@ def main():
             records = parser.parse(path)
 
             for record, count in records.items():
-                print(record, count)
-
+                if count > 1:
+                    print(record, count)
         except (OSError, ValueError, KeyError, ET.ParseError) as error:
             print(f"Ошибка обработки файла: {error}")
 
