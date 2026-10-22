@@ -18,5 +18,5 @@ class XML_Parser(FileParser):
                 floor=int(item.attrib["floor"]),
             )
 
-            records[record] = records.get(addressRecord, 0) + 1
+            records[record] = records.get(record, 0) + 1
         return records
