@@ -3,9 +3,11 @@ import xml.etree.ElementTree as ET
 from path import PathUser
 from csvParser import CsvParser
 from xmlParser import XML_Parser
+from csv import Error as CsvError
 
 from count import count_floors
 
+import time
 def main():
     path_user = PathUser()
 
@@ -21,6 +23,7 @@ def main():
             return
 
         try:
+            start_time = time.time()
             parser = parsers[path.suffix.lower()]
             records = parser.parse(path)
             counter = count_floors()
@@ -30,6 +33,7 @@ def main():
                     print(record, count)
 
             result_floors = counter.count_floors(records)
+            work_time = time.time() - start_time
 
             for city, floors in result_floors.items():
                     print(f"\nГород: {city}")
@@ -38,7 +42,9 @@ def main():
                             f"Количество зданий с {floor} эт.: {floors[floor]}"
                         )
 
-        except (OSError, ValueError, KeyError, ET.ParseError) as error:
+            print(f"\nВремя обработки: {work_time:.3f} с")
+
+        except (OSError, ValueError, KeyError, ET.ParseError, CsvError) as error:
             print(f"Ошибка обработки файла: {error}")
 
 

@@ -24,5 +24,4 @@ class CsvParser(FileParser):
         ].itertuples(index=False, name=None):
             record = addressRecord(*row)
             records[record] = records.get(record, 0) + 1
-
         return records
