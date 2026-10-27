@@ -14,8 +14,8 @@ class count_floors:
                     floor: 0 for floor in range(1, 6)
                 }
 
-                if 1<=item.floor<=5:
-                    self.__count[item.city][item.floor] += 1
+            if 1<=item.floor<=5:
+                self.__count[item.city][item.floor] += 1
         return self.__count
 
                 

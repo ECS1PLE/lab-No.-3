@@ -19,4 +19,5 @@ class XML_Parser(FileParser):
             )
 
             records[record] = records.get(record, 0) + 1
+
         return records
