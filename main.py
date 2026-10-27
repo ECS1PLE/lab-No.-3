@@ -1,10 +1,10 @@
-from pathlib import Path
 import xml.etree.ElementTree as ET
 
 from path import PathUser
 from csvParser import CsvParser
 from xmlParser import XML_Parser
 
+from count import count_floors
 
 def main():
     path_user = PathUser()
@@ -23,9 +23,20 @@ def main():
         try:
             parser = parsers[path.suffix.lower()]
             records = parser.parse(path)
+            counter = count_floors()
 
             for record, count in records.items():
-                print(record, count)
+                if count > 1:
+                    print(record, count)
+
+            result_floors = counter.count_floors(records)
+
+            for city, floors in result_floors.items():
+                    print(f"\nГород: {city}")
+                    for floor in range(1, 6):
+                        print(
+                            f"Количество зданий с {floor} эт.: {floors[floor]}"
+                        )
 
         except (OSError, ValueError, KeyError, ET.ParseError) as error:
             print(f"Ошибка обработки файла: {error}")
