@@ -3,7 +3,7 @@ class count_floors:
         self.__count = {}
 
     @property
-    def get_dict(self):
+    def get_count(self):
         return self.__count
 
     def count_floors(self, records):
